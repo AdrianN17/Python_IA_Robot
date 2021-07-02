@@ -1,0 +1,14 @@
+[
+  {
+    "nombre" : "Luis Perez",
+    "img" : "Faces/Luis.png"
+  },
+  {
+    "nombre" : "Mario Fernandez",
+    "img" : "Faces/Mario.png"
+  },
+  {
+    "nombre" : "Pepe Martinez",
+    "img" : "Faces/Pepe.png"
+  }
+]
