@@ -9,6 +9,7 @@ from PyQt5 import QtGui
 
 import time
 
+from Models.data_decision import data_decision
 from Models.data_robot import data_robot
 
 
@@ -22,12 +23,21 @@ class ia:
         json_array_string = open('face_data.json', )
         self.json_array_img = json.load(json_array_string)
 
-        print(self.json_array_img[0]["nombre"])
+        #print(self.json_array_img[0]["nombre"])
+
+        self.decision = data_decision()
+
+    def clear_decision(self):
+        self.decision.accion = ""
+        self.decision.cantidad_caras = 0
+
+    def get_datajson(self):
+        return json.dumps(self.decision.__dict__)
 
     def read_json(self, json_data):
 
        if json_data != "":
-            
+            self.clear_decision()
 
             data_parse = json.loads(json_data)
 
@@ -36,6 +46,8 @@ class ia:
             self.obj.objetivo = data_parse["objetivo"]
 
             self.aplicar_recfacial(self.obj.data)
+
+
 
 
 
@@ -54,6 +66,8 @@ class ia:
 
 
             self.txt.insertPlainText(texto)
+
+            self.decision.cantidad_caras+= 1
 
             #face_image = image_buffer[top:bottom, left:right]
 

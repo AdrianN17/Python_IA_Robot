@@ -47,7 +47,7 @@
     <property name="geometry">
      <rect>
       <x>980</x>
-      <y>650</y>
+      <y>680</y>
       <width>101</width>
       <height>28</height>
      </rect>
@@ -67,19 +67,6 @@
     </property>
     <property name="text">
      <string>Log :</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_kill">
-    <property name="geometry">
-     <rect>
-      <x>980</x>
-      <y>720</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Limpiar socket</string>
     </property>
    </widget>
    <widget class="QLabel" name="lb_img">

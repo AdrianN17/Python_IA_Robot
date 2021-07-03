@@ -24,45 +24,56 @@ class server():
         return True
 
     def create_thread(self):
-        self.stop_threads = False
-        self.t1 = Thread(target=self.handle_client)
-        self.t1.start()
+        if not self.t1:
+            self.stop_threads = False
+            self.t1 = Thread(target=self.handle_client)
+
+            self.t1.start()
 
     def get_json(self):
         return self.jsonObjStr
 
     def delete_thread(self):
-        self.stop_threads = True
-        self.t1.join()
+        if self.t1:
+            self.stop_threads = True
+            self.t1.join()
+            self.t1 = None
+
 
     def handle_client(self):
 
-        self.sock = socket.socket(socket.AF_INET,  # Internet
-                                  socket.SOCK_STREAM)  # TCP
-        self.sock.bind((TCP_IP, TCP_PORT))
+        try:
+            self.sock = socket.socket(socket.AF_INET,  # Internet
+                                      socket.SOCK_STREAM)  # TCP
+            self.sock.bind((TCP_IP, TCP_PORT))
 
-        self.jsonObjStr = ""
+            self.jsonObjStr = ""
 
-        self.sock.listen(1)
+            self.sock.listen(1)
 
-        connection, client_address = self.sock.accept()
+            connection, client_address = self.sock.accept()
 
-        while True:
+            while True:
 
-            if self.stop_threads:
-                connection.close()
-                break
+                if self.stop_threads:
+                    connection.close()
+                    break
 
-            data = connection.recv(BUFFER_SIZE)
+                data = connection.recv(BUFFER_SIZE)
 
-            if data:
-                self.jsonObjStr += str(data, 'utf-8')
+                if data:
+                    self.jsonObjStr += str(data, 'utf-8')
 
-                if self.validate_json(self.jsonObjStr):
-                    self.ia.read_json(self.jsonObjStr)
-                    self.jsonObjStr = ""
+                    if self.validate_json(self.jsonObjStr):
+                        self.ia.read_json(self.jsonObjStr)
+                        self.jsonObjStr = ""
+                        connection.send(str.encode(self.ia.get_datajson()))
+        finally:
+            self.sock.close()
 
-        self.sock.close()
+
+
+
 
 
 

@@ -32,7 +32,7 @@ class Ui(QtWidgets.QMainWindow):
         self.show()
 
     def on_iniciar(self):
-        print("iniciar")
+        self.txt_text.insertPlainText("TCP conexion iniciada \n")
 
         try:
             self.tcp_server.create_thread()
@@ -40,7 +40,7 @@ class Ui(QtWidgets.QMainWindow):
             QMessageBox.about(self, "Error", "Ha ocurrido un error al iniciar el socket")
 
     def on_apagar(self):
-        print("apagar")
+        self.txt_text.insertPlainText("TCP conexion apagada \n")
 
         try:
             self.tcp_server.delete_thread()
