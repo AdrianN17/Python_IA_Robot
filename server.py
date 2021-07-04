@@ -62,9 +62,11 @@ class server():
                 data = connection.recv(BUFFER_SIZE)
 
                 if data:
-                    self.jsonObjStr += str(data, 'utf-8')
+                    str_data = str(data, 'utf-8')
+                    self.jsonObjStr += str_data
 
                     if self.validate_json(self.jsonObjStr):
+                        print("aceptado")
                         self.ia.read_json(self.jsonObjStr)
                         self.jsonObjStr = ""
                         connection.send(str.encode(self.ia.get_datajson()))

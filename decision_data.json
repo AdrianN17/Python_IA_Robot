@@ -1,0 +1,20 @@
+[
+  {
+    "nombre" : "A",
+    "porcentaje" : 100.0,
+    "prioridad" : 1,
+    "tiempo_desgaste" : 1
+  },
+  {
+    "nombre" : "B",
+    "porcentaje" : 100.0,
+    "prioridad" : 3,
+    "tiempo_desgaste" : 0.5
+  },
+  {
+    "nombre" : "C",
+    "porcentaje" : 100.0,
+    "prioridad" : 2,
+    "tiempo_desgaste" : 2
+  }
+]

@@ -1,8 +1,9 @@
-from PyQt5 import QtWidgets, uic
-from PyQt5.QtGui import QImage, QTextCursor
+from PyQt5 import QtWidgets, uic, QtCore
+from PyQt5 import QtCore
+from PyQt5.QtGui import  QTextCursor
 from PyQt5.QtWidgets import QMessageBox
 import sys
-
+import subprocess
 
 from server import server
 from ia import ia
@@ -14,25 +15,26 @@ class Ui(QtWidgets.QMainWindow):
 
         self.btn_iniciar = self.findChild(QtWidgets.QPushButton,"btn_iniciar")
         self.btn_apagar = self.findChild(QtWidgets.QPushButton, "btn_apagar")
+        self.btn_abrir = self.findChild(QtWidgets.QPushButton, "btn_abrir")
 
         self.lb_img = self.findChild(QtWidgets.QLabel, "lb_img")
         self.txt_text = self.findChild(QtWidgets.QTextEdit,"txt_resultados")
 
-        self.txt_text.moveCursor(QTextCursor.End)
-
-
-        sb = self.txt_text.verticalScrollBar()
-        sb.setValue(sb.maximum())
-
         self.btn_iniciar.clicked.connect(self.on_iniciar)
         self.btn_apagar.clicked.connect(self.on_apagar)
 
-        self.tcp_server = server(ia(self.lb_img,self.txt_text))
+        self.ia = ia(self.lb_img,self.txt_text)
+        self.tcp_server = server(self.ia)
+
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect(self.timer_update)
 
         self.show()
 
     def on_iniciar(self):
         self.txt_text.insertPlainText("TCP conexion iniciada \n")
+        self.ia.resetear_decision()
+        self.timer.start(1000)
 
         try:
             self.tcp_server.create_thread()
@@ -41,11 +43,22 @@ class Ui(QtWidgets.QMainWindow):
 
     def on_apagar(self):
         self.txt_text.insertPlainText("TCP conexion apagada \n")
+        self.timer.stop()
 
         try:
             self.tcp_server.delete_thread()
         except TypeError:
             QMessageBox.about(self, "Error", "Ha ocurrido un error al terminar el socket ")
+
+    def timer_update(self):
+        self.ia.aplicar_tiempo()
+        self.txt_text.moveCursor(QTextCursor.End)
+
+    def on_abrir(self):
+        pass
+        #subprocess.call(
+        #    ["C:\Users\Public\Videos\Sample Videos\New Folder\ksp-win-0-21-1\KSP_win cosmetic mods\KSP.exe"])
+
 
 app = QtWidgets.QApplication(sys.argv)
 window = Ui()
