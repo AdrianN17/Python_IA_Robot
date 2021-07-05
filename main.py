@@ -4,6 +4,7 @@ from PyQt5.QtGui import  QTextCursor
 from PyQt5.QtWidgets import QMessageBox
 import sys
 import subprocess
+import pathlib
 
 from server import server
 from ia import ia
@@ -22,6 +23,7 @@ class Ui(QtWidgets.QMainWindow):
 
         self.btn_iniciar.clicked.connect(self.on_iniciar)
         self.btn_apagar.clicked.connect(self.on_apagar)
+        self.btn_abrir.clicked.connect(self.on_abrir)
 
         self.ia = ia(self.lb_img,self.txt_text)
         self.tcp_server = server(self.ia)
@@ -55,9 +57,9 @@ class Ui(QtWidgets.QMainWindow):
         self.txt_text.moveCursor(QTextCursor.End)
 
     def on_abrir(self):
-        pass
-        #subprocess.call(
-        #    ["C:\Users\Public\Videos\Sample Videos\New Folder\ksp-win-0-21-1\KSP_win cosmetic mods\KSP.exe"])
+
+        path_file = str(pathlib.Path(__file__).parent.absolute()) + "\Simulador\Proyecto_Robot_IA.exe"
+        subprocess.Popen([path_file])
 
 
 app = QtWidgets.QApplication(sys.argv)
