@@ -90,9 +90,6 @@ class ia:
         face_locations = face_recognition.face_locations(image_buffer)
         face_encodings = face_recognition.face_encodings(image_buffer, face_locations)
 
-        pil_image = Image.fromarray(jpg_as_np)
-        draw = ImageDraw.Draw(pil_image)
-
         pil_image = Image.fromarray(image_buffer)
         draw = ImageDraw.Draw(pil_image)
 
