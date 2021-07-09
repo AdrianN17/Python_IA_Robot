@@ -171,6 +171,9 @@ class ia:
         return data.porcentaje_real - (data.prioridad * data.tiempo_desgaste)
 
     def aplicar_reabastecimiento(self, objetivo):
+
+        print("El objetivo es : " + objetivo)
+
         if(objetivo == "A"):
             self.fsm.irNoAbastecido()
             self.decisionBD[0].porcentaje_real = 100
@@ -189,5 +192,7 @@ class ia:
         elif (objetivo == "R"):
             self.fsm.irAbastecido()
             self.txt.insertPlainText("Robot abastecido : \n")
+
+        print("Objetivo elegido ....")
 
 
