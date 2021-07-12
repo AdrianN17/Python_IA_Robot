@@ -83,9 +83,9 @@ class ia:
                 self.aplicar_reabastecimiento(data_parse["objetivo"])
 
     def aplicar_recfacial(self, imgb64):
-        jpg_original = base64.b64decode(imgb64)
-        jpg_as_np = np.frombuffer(jpg_original, dtype=np.uint8)
-        image_buffer = cv2.imdecode(jpg_as_np, flags=1)
+        jpg_original = base64.b64decode(imgb64) #img
+        jpg_as_np = np.frombuffer(jpg_original, dtype=np.uint8) #arreglo numpy - bits
+        image_buffer = cv2.imdecode(jpg_as_np, flags=1) #img
 
         face_locations = face_recognition.face_locations(image_buffer)
         face_encodings = face_recognition.face_encodings(image_buffer, face_locations)
