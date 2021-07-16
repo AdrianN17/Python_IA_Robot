@@ -136,9 +136,9 @@ class ia:
         listado_pesos = []
 
         for data in self.decisionBD:
-            data.porcentaje_real -= data.tiempo_desgaste
+            data.porcentaje_real -= (data.tiempo_desgaste * data.prioridad)*0.1
 
-            texto = "{} Materia prima consumida de fabrica {}, Porcentaje {}\n".format(
+            texto = "{} Materia prima consumida de fabrica {}, Porcentaje {:.2f}\n".format(
                 time.strftime("%H:%M:%S"), data.nombre, data.porcentaje_real)
             self.txt.insertPlainText(texto)
 
