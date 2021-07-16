@@ -14,6 +14,10 @@ class Ui(QtWidgets.QMainWindow):
         super(Ui, self).__init__()
         uic.loadUi('untitled.ui', self)
 
+        style = open('style.qss').read()
+
+        self.setStyleSheet(style)
+
         self.btn_iniciar = self.findChild(QtWidgets.QPushButton,"btn_iniciar")
         self.btn_apagar = self.findChild(QtWidgets.QPushButton, "btn_apagar")
         self.btn_abrir = self.findChild(QtWidgets.QPushButton, "btn_abrir")

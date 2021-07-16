@@ -10,6 +10,18 @@
     <height>800</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>800</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -21,13 +33,13 @@
     <property name="geometry">
      <rect>
       <x>1120</x>
-      <y>650</y>
-      <width>93</width>
+      <y>630</y>
+      <width>151</width>
       <height>28</height>
      </rect>
     </property>
     <property name="text">
-     <string>Iniciar socket</string>
+     <string>Iniciar conexion socket</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_apagar">
@@ -35,25 +47,25 @@
      <rect>
       <x>1120</x>
       <y>720</y>
-      <width>93</width>
+      <width>151</width>
       <height>28</height>
      </rect>
     </property>
     <property name="text">
-     <string>Apagar socket</string>
+     <string>Apagar conexion socket</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_abrir">
     <property name="geometry">
      <rect>
-      <x>980</x>
+      <x>960</x>
       <y>680</y>
-      <width>101</width>
+      <width>141</width>
       <height>28</height>
      </rect>
     </property>
     <property name="text">
-     <string>Abrir simulador</string>
+     <string>Abrir simulador Unity</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -65,8 +77,14 @@
       <height>16</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
-     <string>Log :</string>
+     <string>Log </string>
     </property>
    </widget>
    <widget class="QLabel" name="lb_img">
@@ -87,12 +105,18 @@
      <rect>
       <x>70</x>
       <y>10</y>
-      <width>55</width>
+      <width>131</width>
       <height>16</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
-     <string>Imagen : </string>
+     <string>Transmision Robot</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="txt_resultados">
